@@ -10,7 +10,7 @@ from models.city import City
 from models.amenity import Amenity
 from models.place import Place
 from models.review import Review
-from models.base_model import BaseMode, Base
+from models.base_model import BaseModel, Base
 
 
 class DBStorage:
@@ -36,20 +36,22 @@ class DBStorage:
         """something"""
         classdict = {}
         if cls is None:
+            """
             cls = [User, State, City, Amenity, Place, Review]
+            """
+            cls = [State, City]
         else:
-            cls = [cls]
-
+            lista = cls
+            cls = []
         for classes in cls:
             for result in self.__session.query(classes).all():
                 key = "{}.{}".format(type(result).__name__, result.id)
+                print(key)
                 classdict[key] = result
         return classdict
 
     def reload(self):
         """Create alltables in the database"""
-        Base.metadata.create_all(engine)
-
         Session_factory = sessionmaker(bind=self.__engine,
                                        expire_on_commit=False)
         Session = scoped_session(Session_factory)
