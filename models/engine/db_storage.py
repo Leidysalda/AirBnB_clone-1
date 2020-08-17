@@ -24,7 +24,6 @@ class DBStorage:
         password = getenv('HBNB_MYSQL_PWD')
         host = getenv('HBNB_MYSQL_HOST')
         database = getenv('HBNB_MYSQL_DB')
-        # create an engine
         self.__engine = create_engine('mysql+mysqldb://{}:{}@{}/{}'
                                       .format(user, password, host, database),
                                       pool_pre_ping=True)
@@ -36,27 +35,17 @@ class DBStorage:
         """something"""
         classdict = {}
         if cls is None:
-            """
-            cls = [User, State, City, Amenity, Place, Review]
-            """
+            #cls = [User, State, City, Amenity, Place, Review]
             cls = [State, City]
+            
         else:
-            lista = cls
-            cls = []
+            cls = [cls]
         for classes in cls:
             for result in self.__session.query(classes).all():
                 key = "{}.{}".format(type(result).__name__, result.id)
-                print(key)
                 classdict[key] = result
         return classdict
-
-    def reload(self):
-        """Create alltables in the database"""
-        Session_factory = sessionmaker(bind=self.__engine,
-                                       expire_on_commit=False)
-        Session = scoped_session(Session_factory)
-        self.__session = Session()
-
+        
     def new(self, obj):
         """add the object to the current database session"""
         self.__session.add(obj)
@@ -69,3 +58,11 @@ class DBStorage:
         """delete from the current database session"""
         if obj:
             self.__session.delete(obj)
+
+    def reload(self):
+        """Create alltables in the database"""
+        Base.metadata.create_all(self.__engine)
+        Session_factory = sessionmaker(bind=self.__engine,
+                                       expire_on_commit=False)
+        Session = scoped_session(Session_factory)
+        self.__session = Session()
