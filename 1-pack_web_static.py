@@ -10,9 +10,7 @@ def do_pack():
     """pack"""
     now = datetime.now()
     time = now.strftime("%Y%m%d%H%M%S")
-    ruta = "web_static_{}".format(time)
+    ruta = "web_static_{}.tgz".format(time)
     
     local('mkdir -p versions')
     local('tar -czvf versioins/{:s} web_static/'.format(ruta))
-    
-    print()
