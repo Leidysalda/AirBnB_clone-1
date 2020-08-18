@@ -13,4 +13,4 @@ def do_pack():
     ruta = "web_static_{}.tgz".format(time)
     
     local('mkdir -p versions')
-    local('tar -czvf versioins/{:s} web_static/'.format(ruta))
+    local('tar -czvf versions/{:s} web_static/'.format(ruta))
