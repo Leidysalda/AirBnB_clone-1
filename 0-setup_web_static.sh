@@ -3,7 +3,7 @@
 
 #sudo addgroup ubuntu && useradd -md /home/ubuntu -g ubuntu -s /bin/bash ubuntu
 sudo apt-get -y update
-#sudo apt-get -y install nginx
+sudo apt-get -y install nginx
 
 sudo mkdir -p /data/web_static/releases/test/ /data/web_static/shared/
 
