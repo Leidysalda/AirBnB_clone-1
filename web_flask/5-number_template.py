@@ -11,7 +11,7 @@ app = Flask(__name__)
 @app.route('/', strict_slashes=False)
 def hello_hbnb():
     """hello"""
-    return 'Hello HBNB'
+    return 'Hello HBNB!'
 
 
 @app.route('/hbnb', strict_slashes=False)
@@ -49,4 +49,4 @@ def number_template(n):
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    app.run(host='0.0.0.0', port=5000)
