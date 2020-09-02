@@ -63,7 +63,7 @@ class FileStorage:
             key = obj.to_dict()['__class__'] + '.' + obj.id
             try:
                 del self.__objects[key]
-            except:
+            except Exception:
                 return
 
     def close(self):
