@@ -9,7 +9,7 @@ from models.city import City
 
 
 app = Flask(__name__)
-app.url_map.strict_slashes=False
+app.url_map.strict_slashes = False
 
 
 @app.teardown_appcontext
@@ -23,7 +23,6 @@ def state_list():
     """list"""
     return render_template('8-cities_by_states.html',
                            states=storage.all(State).values())
-
 
 
 if __name__ == '__main__':
