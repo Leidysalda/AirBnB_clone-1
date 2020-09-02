@@ -5,6 +5,7 @@ from sqlalchemy import Column, String, Integer
 from sqlalchemy.orm import relationship
 from models.city import City
 from os import getenv
+import models
 
 
 class State(BaseModel, Base):
@@ -14,7 +15,7 @@ class State(BaseModel, Base):
 
     if getenv('HBNB_TYPE_STORAGE') == "db":
         cities = relationship("City", cascade="all, delete")
-    elif getenv('HBNB_TYPE_STORAGE') == "file":
+    else:
         @property
         def cities(self):
             """property that returs a list of city instances"""

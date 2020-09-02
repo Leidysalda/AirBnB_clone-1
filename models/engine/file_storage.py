@@ -16,7 +16,7 @@ class FileStorage:
                 if isinstance(value, cls):
                     var_cls[key] = value
             return var_cls
-        return FileStorage.__objects
+        return self.__objects
 
     def new(self, obj):
         """Adds new object to storage dictionary"""
@@ -40,6 +40,7 @@ class FileStorage:
         from models.city import City
         from models.amenity import Amenity
         from models.review import Review
+        from models.engine.file_storage import FileStorage
 
         classes = {
             'BaseModel': BaseModel, 'User': User, 'Place': Place,
@@ -64,3 +65,7 @@ class FileStorage:
                 del self.__objects[key]
             except:
                 return
+
+    def close(self):
+        """call reload"""
+        self.reload()

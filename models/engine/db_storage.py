@@ -37,7 +37,6 @@ class DBStorage:
         if cls is None:
             #cls = [User, State, City, Amenity, Place, Review]
             cls = [State, City]
-            
         else:
             cls = [cls]
         for classes in cls:
@@ -45,7 +44,7 @@ class DBStorage:
                 key = "{}.{}".format(type(result).__name__, result.id)
                 classdict[key] = result
         return classdict
-        
+
     def new(self, obj):
         """add the object to the current database session"""
         self.__session.add(obj)
@@ -66,3 +65,7 @@ class DBStorage:
                                        expire_on_commit=False)
         Session = scoped_session(Session_factory)
         self.__session = Session()
+
+    def close(self):
+        """method close"""
+        self.__session.close()
