@@ -1,6 +1,11 @@
 #!/usr/bin/python3
 """ Place Module for HBNB project """
-from models.base_model import BaseModel
+from models.base_model import BaseModel, Base
+from models.user import User
+from models.city import City
+import models
+#from sqlalchemy import relationship
+#from sqlalchemy.orm import Column, Integer, String, Foreingkey
 
 
 class Place(BaseModel):
