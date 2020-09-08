@@ -12,6 +12,7 @@ import os
 env.hosts = ["34.75.57.54", "34.74.149.81"]
 # env.hosts=['localhost']
 
+
 def do_pack():
     """pack"""
     now = datetime.now()
@@ -20,6 +21,7 @@ def do_pack():
     local('mkdir -p versions')
     local('tar -czvf versions/{:s} web_static/'.format(ruta))
     return 'versions/{:s}'.format(ruta)
+
 
 def do_deploy(archive_path):
     """deploy"""
