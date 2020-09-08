@@ -9,8 +9,8 @@ from fabric.api import local
 import os
 
 
-#env.hosts = ["34.75.57.54", "34.74.149.81"]
-env.hosts=['localhost']
+env.hosts = ["34.75.57.54", "34.74.149.81"]
+# env.hosts=['localhost']
 
 def do_pack():
     """pack"""
